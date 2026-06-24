@@ -1,0 +1,17 @@
+name: Keep Streamlit App Alive
+
+on:
+  schedule:
+    - cron: '0 */6 * * *'  # Har 6 ghante mein ping karega
+  workflow_dispatch:        # Manual run bhi kar sakte ho
+
+jobs:
+  keep_alive:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Ping Streamlit App
+        run: |
+          curl -L --max-time 60 --retry 3 --retry-delay 5 \
+          "https://snapttend-main.streamlit.app" \
+          -o /dev/null -w "HTTP Status: %{http_code}\n"
+          echo "App pinged successfully!"
