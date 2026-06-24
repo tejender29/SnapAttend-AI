@@ -12,6 +12,6 @@ jobs:
       - name: Ping Streamlit App
         run: |
           curl -L --max-time 60 \
-          "https://snapttend-main.streamlit.app" \
+          "https://snapattend-main.streamlit.app" \
           -o /dev/null -w "HTTP Status: %{http_code}\n" || true
           echo "Ping done!"
